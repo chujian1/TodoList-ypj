@@ -21,7 +21,10 @@ class TodoList extends Component{
     addItem = (e) => {
         let arr = this.state.items;
         if(this._inputElement.value !== ""){
-            arr.unshift(this._inputElement.value);
+            arr.unshift({
+                text: this._inputElement.value,
+                key: Date.now()
+            })
             this.setState({
                     items:arr
                 }
@@ -31,7 +34,7 @@ class TodoList extends Component{
         }
         e.preventDefault();
     }
-    deleteItem(key) {
+    deleteItem = (key)=> {
         let filteredItems = this.state.items.filter(function (item) {
             return (item.key !== key)
         })
